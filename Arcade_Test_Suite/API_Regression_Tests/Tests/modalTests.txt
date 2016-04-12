@@ -1,0 +1,30 @@
+*** Settings ***
+Documentation     These tests are aimed at testing a simple enrollment
+Library  OperatingSystem
+Library  String
+#Test Setup
+Resource          ../Keywords/WebActions.txt
+Resource          ../Elements/*.txt
+
+
+
+*** Test Cases ***
+smallModalTest
+    [Documentation]    This test imports content needed to drive the tests.  it's looping over the lines in a file
+    [Tags]     search
+    [Setup]
+    #[Teardown]    close browser
+#    ${SearchParams}=    set variable    ${EMPTY}
+    Open Arcade
+    reload page
+    click Element       xpath=//i[@role='button']
+    Page Should Contain Element         css=.modal-header-content
+    click element       css=.modal-close-btn
+    click Element       xpath=//i[@role='button']
+    Page Should Contain Element         css=.modal-header-content
+    reload page
+    Page Should Contain Element         css=.modal-header-content
+    close browser
+
+
+#	${contents}=   Get File  ../RegressionTests/TestData/SearchDataSet.txt   encoding=UTF-8

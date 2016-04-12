@@ -1,0 +1,34 @@
+*** Settings ***
+Documentation     Keywords relevant for the entire spotlite.com website. \ Variables are populated based on the value of ${SPOT_TEST ENV} using a variables file.
+#Library           Selenium2Library    run_on_failure=Capture Page Screenshot
+Library           ExtendedSelenium2Library              run_on_failure=Capture Page Screenshot
+Library           Collections
+Library           String
+Library           DateTime
+#Library           ../Libraries/SauceReport.py
+Library           DebugLibrary
+Library           RequestsLibrary
+Library           FakerLibrary
+Variables         ../Resources/SetEnvironment.py    ${RALLY_TEST_ENV}    ${ON_DEMAND}
+Resource          ArcadeBaseElements.txt
+
+
+*** Keywords ***
+Open Website
+    [Arguments]    ${Site_URL}
+    [Documentation]    Open the main website.
+    Log    Opening the rally connect website in ${RALLY_TEST_URL}
+    log    ${Site_URL}
+    #following is here to accommodate osprey not liking simultaneous requests.
+    ${randomDelay}=    Evaluate    random.sample(range(1000, 10000), 1)    random
+    sleep    ${randomDelay[0]}ms
+    Open Browser    ${Site_URL}    ${RALLY_SELENIUM_BROWSER}    \    ${RALLY_REMOTE_URL}    ${RALLY_DESIRED_CAPABILITIES}
+    Comment    Run Keyword Unless    Open Browser    ${Site_URL}    browser=${RALLY_SELENIUM_BROWSER}
+    Set Window Size    ${1450}    ${1200}
+    set selenium speed    ${RALLY_SELENIUM_SPEED}
+    set selenium timeout    30
+
+Open Arcade
+#    Open Website    ${RALLY_TEST_URL}
+    Open Website    http://arcade.pixel.ninja/
+
