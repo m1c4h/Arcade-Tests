@@ -11,7 +11,7 @@ Resource          ../Elements/*.txt
 *** Test Cases ***
 smallModalTest
     [Documentation]    This test imports content needed to drive the tests.  it's looping over the lines in a file
-    [Tags]     search
+    [Tags]     smallmodal
     [Setup]
     #[Teardown]    close browser
 #    ${SearchParams}=    set variable    ${EMPTY}
