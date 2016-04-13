@@ -2,6 +2,6 @@
 Documentation     Variables and keywords relevant for the Searches in Connect
 
 *** Variables ***
-${roleDropdown}   css=.icon-triangle-down
+${roleDropdown}   xpath=//i[@role='button']
 ${familyMemberModal}   css=.modal-header-content
 ${closeModal}    css=.modal-close-btn

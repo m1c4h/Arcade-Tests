@@ -4,7 +4,8 @@ Library  OperatingSystem
 Library  String
 #Test Setup
 Resource          ../Keywords/WebActions.txt
-Resource          ../Elements/*.txt
+
+Test Teardown       close browser
 
 
 
@@ -12,9 +13,21 @@ Resource          ../Elements/*.txt
 smallModalTest
     [Documentation]    This test imports content needed to drive the tests.  it's looping over the lines in a file
     [Tags]     smallmodal
-    [Setup]
-    #[Teardown]    close browser
-#    ${SearchParams}=    set variable    ${EMPTY}
+    Open Arcade
+    reload page
+    click Element       ${roleDropdown}
+    Page Should Contain Element         ${familyMemberModal}
+    click element       ${closeModal}
+    click Element       ${roleDropdown}
+    Page Should Contain Element         ${familyMemberModal}
+    reload page
+    Page Should Contain Element         ${familyMemberModal}
+
+
+
+smallModalTest
+    [Documentation]    This test imports content needed to drive the tests.  it's looping over the lines in a file
+    [Tags]     bigModals
     Open Arcade
     reload page
     click Element       xpath=//i[@role='button']
@@ -24,7 +37,3 @@ smallModalTest
     Page Should Contain Element         css=.modal-header-content
     reload page
     Page Should Contain Element         css=.modal-header-content
-    close browser
-
-
-#	${contents}=   Get File  ../RegressionTests/TestData/SearchDataSet.txt   encoding=UTF-8

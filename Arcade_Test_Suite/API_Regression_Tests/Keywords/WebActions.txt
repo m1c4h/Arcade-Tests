@@ -10,7 +10,8 @@ Library           DebugLibrary
 Library           RequestsLibrary
 Library           FakerLibrary
 Variables         ../Resources/SetEnvironment.py    ${RALLY_TEST_ENV}    ${ON_DEMAND}
-Resource          ArcadeBaseElements.txt
+
+Resource          ../Elements/ArcadeBaseElements.txt
 
 
 *** Keywords ***
@@ -29,6 +30,6 @@ Open Website
     set selenium timeout    30
 
 Open Arcade
-#    Open Website    ${RALLY_TEST_URL}
+#   Open Website    ${RALLY_TEST_URL}
     Open Website    http://arcade.pixel.ninja/
 
