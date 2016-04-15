@@ -1,0 +1,66 @@
+*** Settings ***
+Documentation     These tests are aimed at testing a Arcade API's
+Test Setup
+Force Tags        API
+Resource          ../Keywords/ApiActions.txt
+Resource          ../Keywords/PayloadData.txt
+Resource          ../Keywords/Vars/SearchVars.txt
+Library           RequestsLibrary
+Suite Teardown   Delete All Sessions
+Library           Collections
+Library           String
+Library           OperatingSystem
+Library           HttpLibrary.HTTP
+Library           Selenium2Library
+#Library           ../Resources/ValidateJsonSchema.py
+
+
+*** Variables ***
+
+
+*** Test Cases ***
+set Param
+    [Documentation]    This te  st imports content needed to drive the tests.  it's looping over the lines in a file
+    [Tags]  param
+    Open DG and set params
+    ${resp}=   get request    https://doppelganger-arcade-dev.consul.werally.in/rest/response/v1/partners/optum/services/plan-details
+     Should be equal as numbers    ${resp.status_code}   200
+    close browser
+
+
+smallModalTest
+    [Documentation]    This test imports content needed to drive the tests.  it's looping over the lines in a file
+    [Tags]     smallmodal
+    Open Arcade
+
+#get guidedSearch
+#    Build Session
+#    ${resp}=   get request    rallyroot    /rest/provider/v1/content/en/guidedSearch/content.json    headers=&{headers}
+#    log    ${resp.json}
+#    log    ${resp.content}
+#    Should be equal as numbers    ${resp.status_code}   200
+#
+#get guidedSearch provider
+#    Build Session
+#    ${resp}=   get request     rallyroot   /rest/provider/v1/guidedSearch/provider/0?configuration=uhc    headers=&{headers}
+#    log    ${resp.json}
+#    log    ${resp.content}
+#    Should be equal as numbers    ${resp.status_code}   200
+#
+#get resultsDisclamer
+#    Build Session
+#    ${resp}=   get request     rallyroot   /rest/partner/v1/planContent/1aceb0d87a7a4c01b21fc27029a2ad6a    headers=&{headers}
+#    log    ${resp.json}
+#    log    ${resp.content}
+#    Should be equal as numbers    ${resp.status_code}   200
+#
+#Post textSearch
+#    Build Session
+#    Set search Vars
+#    ${resp}=    post request    rallyroot   /rest/provider/v1/search/filtered   headers=&{headers}   data=${searchPayload}
+#    log    ${resp.json}
+#    log    ${resp.content}
+#    Should be equal as numbers    ${resp.status_code}   200
+
+
+

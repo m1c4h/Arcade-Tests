@@ -30,6 +30,6 @@ Open Website
     set selenium timeout    30
 
 Open Arcade
-#   Open Website    ${RALLY_TEST_URL}
-    Open Website    http://arcade.pixel.ninja/
+   Open Website    ${RALLY_TEST_URL}
+#    Open Website    http://arcade.pixel.ninja/
 

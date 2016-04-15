@@ -13,7 +13,7 @@ COMMON = {
     'TRUE': {
         'RALLY_SELENIUM_BROWSER': 'FF',
         'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
-        'RALLY_DESIRED_CAPABILITIES': 'name:RallyAracade Automated Test Suite,platform:Windows 7,browserName:FireFox,version:37.0,javascriptEnabled:True',
+        'RALLY_DESIRED_CAPABILITIES': 'name:RallyArcade Automated Test Suite,platform:Windows 7,browserName:FireFox,version:37.0,javascriptEnabled:True',
         'RALLY_SELENIUM_TIMEOUT': '10',
         'RALLY_SELENIUM_SPEED': '.4'
     }
