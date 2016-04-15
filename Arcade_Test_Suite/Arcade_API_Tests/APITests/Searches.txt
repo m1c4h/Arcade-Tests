@@ -20,18 +20,20 @@ Library           Selenium2Library
 
 *** Test Cases ***
 set Param
-    [Documentation]    This te  st imports content needed to drive the tests.  it's looping over the lines in a file
+    [Documentation]    this test case is to set parameters in doppelganger and check response
     [Tags]  param
     Open DG and set params
-    ${resp}=   get request    https://doppelganger-arcade-dev.consul.werally.in/rest/response/v1/partners/optum/services/plan-details
-     Should be equal as numbers    ${resp.status_code}   200
+    Create Session          doppelganger            https://doppelganger-arcade-dev.consul.werally.in
+    set test variable    &{headers}    Content-Type=application/json    Accept=Language=en-US    Pragma=no-cache    Accept=application/json    Cache-Control=no-cache    Accept-Encoding=gzip,deflate    User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:42) Gecko/20100101 Firefox/42.0
+    ${resp}=   get request      doppelganger        /rest/response/v1/partners/optum/services/plan-details        headers=&{headers}
+    log    ${resp.json}
+    log    ${resp.content}
+    Should be equal as numbers    ${resp.status_code}   200
+    should contain                ${resp.content}       "success"
     close browser
 
 
-smallModalTest
-    [Documentation]    This test imports content needed to drive the tests.  it's looping over the lines in a file
-    [Tags]     smallmodal
-    Open Arcade
+
 
 #get guidedSearch
 #    Build Session

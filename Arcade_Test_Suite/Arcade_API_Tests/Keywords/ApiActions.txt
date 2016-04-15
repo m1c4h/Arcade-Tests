@@ -83,9 +83,10 @@ Open DG and set params
    Open Website    ${Rally_Set_Param}
    Click element    css=[ng-model*="settings.selectedPartner"]
    click element    css=[value*="optum"]
-
-   debug
-   click element    css=[ng-model*="settings.selectedEndpoint"]
-   click element     css=[value*="Plan Details Endpoint"]
+   click element    xpath=//select[@ng-model='settings.selectedEndpoint']
+   click element    xpath=//select[@ng-model='settings.selectedEndpoint']
+   click element     css=[value*="plan-details"]
    click element     css=[ng-model*="settings.selectedStatus"]
-   click element     css=[ng-click*="setEndpoint()]
+   click element    css=[ng-model*="settings.selectedStatus"]
+   click element      css=[value*="success"]
+   click element     css=[ng-click*="setEndpoint()"]
