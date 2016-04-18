@@ -30,6 +30,21 @@ Open Website
     set selenium timeout    30
 
 Open Arcade
-   Open Website    ${RALLY_TEST_URL}
-#    Open Website    http://arcade.pixel.ninja/
+#   Open Website    ${RALLY_TEST_URL}
+   Open Website     http://arcade.kwikfood.com
+   Maximize Browser window
 
+#this keyword will return a list or array of webelements that match the locator .To access elements in tc use @{elementsList}[0]
+Get Elements
+    [Arguments]    ${locator}
+    @{elem} =     Get WebElements	${locator}
+    [Return]    @{elem}
+
+
+#If you need to scroll to element provide locater to this keyword
+Scroll to Element
+    [Arguments]      ${the_element}
+    ${vert_pos} =    Get Vertical Position   ${the_element}
+    ${horz_pos} =    Get Horizontal Position     ${the_element}
+    Execute JavaScript   window.scrollTo (${horz_pos},${vert_pos})
+    Sleep   .5 seconds

@@ -12,6 +12,7 @@ Library           String
 Library           OperatingSystem
 Library           HttpLibrary.HTTP
 Library           Selenium2Library
+Test Teardown      close browser
 #Library           ../Resources/ValidateJsonSchema.py
 
 
@@ -24,7 +25,7 @@ set Param
     [Tags]  param
     Open DG and set params  plan-details    success
     Build Session
-    ${resp}=   get request      doppelganger        /rest/response/v1/partners/optum/services/plan-details        headers=&{headers}
+    ${resp}=   get request      doppelganger       /rest/response/v1/partners/optum/services/plan-details        headers=&{headers}
     log    ${resp.json}
     log    ${resp.content}
     Should be equal as numbers    ${resp.status_code}   200
@@ -34,7 +35,7 @@ set Param
     log    ${resp.content}
     Should be equal as numbers    ${resp.status_code}   200
     should contain                ${resp.content}       {"member":[{"eligibility":[{"benefitSet":[
-    close browser
+
 
 
 
