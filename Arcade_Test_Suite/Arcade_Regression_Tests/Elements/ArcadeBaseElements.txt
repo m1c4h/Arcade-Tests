@@ -6,3 +6,4 @@ ${roleDropdown}   xpath=//i[@role='button']
 ${openModal}     css=.ng-scope.hide-outlines.modal-open
 ${closeModal}    css=.modal-close-btn
 ${bigModal}      css=.cost-cat
+${contentHopper}    css=.content-hopper.hide-mobile .icon-arrow-down
