@@ -31,7 +31,7 @@ Open Website
 Open Arcade
 #   Open Website    ${RALLY_TEST_URL}
    Open Website     http://arcade.kwikfood.com
-   Maximize Browser window
+#   Maximize Browser window
 
 #this keyword will return a list or array of webelements that match the locator .To access elements in tc use @{elementsList}[0]
 Get Elements

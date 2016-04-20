@@ -1,0 +1,25 @@
+*** Settings ***
+Documentation     These tests are aimed at testing a simple enrollment
+Library  OperatingSystem
+Library  String
+#Test Setup
+Resource          ../Keywords/WebActions.txt
+Force Tags        ALL  Arcade1
+Test Teardown       close browser
+
+
+
+*** Test Cases ***
+Content Hopper Test
+    [Documentation]    This test validates content hopper button scrolls down
+    [Tags]     hopper
+    Open Arcade
+    #get x and y cocordinates of element before scrolling
+    ${vert_pos} =    Get Vertical Position    ${contentHopper}
+    ${horz_pos} =    Get Horizontal Position      ${contentHopper}
+    Click Element       ${contentHopper}
+    #get x and y cocordinates of element before scrolling
+    ${Second_vert_pos} =    Get Vertical Position    ${contentHopper}
+    ${horz_pos} =    Get Horizontal Position      ${contentHopper}
+    #Assert page has scrolled down by checking vertical position has increased from where we started.
+    should be true       ${Second_vert_pos}>${vert_pos}

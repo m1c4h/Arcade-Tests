@@ -4,14 +4,14 @@ Library  OperatingSystem
 Library  String
 #Test Setup
 Resource          ../Keywords/WebActions.txt
-
+Force Tags        ALL  Arcade1
 Test Teardown       close browser
 
 
 
 *** Test Cases ***
-small Modal Test
-    [Documentation]   This test validates small modals can be opens ,closes and persists after page reload
+Small Modal Test
+    [Documentation]   This test validates small modals  open ,closes and persists after page reload
     [Tags]     smallmodal
     Open Arcade
     reload page
@@ -27,41 +27,9 @@ small Modal Test
 
 
 
-Big Modal Test
-    [Documentation]    This test validates big modals can be opens ,closes and persists after page reload.Loops through 4 big modals
-    [Tags]     bigModal
-    Open Arcade
-    reload page
-    @{elements}     Get Elements     ${bigModal}
-    #Loop through all the big modal window and perform these assertions
-    :FOR    ${element}    IN     @{elements}
-    \       Click Element       ${element}
-    \       Click Element       ${closeModal}    #Close button should close big modals
-    \       Page should not contain element     ${openModal}
-    \       Execute JavaScript   window.scrollTo (900,100)
-    \       Click Element        ${element}
-    \       Press Key   	css=.modal-header-content   	\\27  #Escape should close big modals
-    \       Page should not contain element         css=.ng-scope-hide-outlines-modal-open
-    \       Execute JavaScript   window.scrollTo (900,100)
-    \       Click Element        ${element}
-    \       Go Back     #Go back on browser window should close big modals
-    \       Page should not contain element   ${openModal}
 
 
 
-Content Hopper Test
-    [Documentation]    This test validates content hopper button scrolls down
-    [Tags]     hopper
-    Open Arcade
-    #get x and y cocordinates of element before scrolling
-    ${vert_pos} =    Get Vertical Position    ${contentHopper}
-    ${horz_pos} =    Get Horizontal Position      ${contentHopper}
-    Click Element       ${contentHopper}
-    #get x and y cocordinates of element before scrolling
-    ${Second_vert_pos} =    Get Vertical Position    ${contentHopper}
-    ${horz_pos} =    Get Horizontal Position      ${contentHopper}
-    #Assert page has scrolled down by checking vertical position has increased from where we started.
-    should be true       ${Second_vert_pos}>${vert_pos}
 
 
 

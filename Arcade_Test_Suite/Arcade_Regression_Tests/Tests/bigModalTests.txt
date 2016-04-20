@@ -1,0 +1,30 @@
+
+*** Settings ***
+Documentation     These tests are aimed at testing a simple enrollment
+Library  OperatingSystem
+Library  String
+#Test Setup
+Resource          ../Keywords/WebActions.txt
+Force Tags        ALL  Arcade1  bigModal
+Test Teardown       close browser
+
+
+
+*** Test Cases ***
+Big Modal Test
+    [Documentation]    This test validates big modals open ,close and persists after page reload.Loops through 4 big modals.
+    [Tags]     bigModal1
+    Open Arcade
+    reload page
+    @{elements}     Get Elements     ${bigModal}
+    #Loop through all the big modal window and perform these assertions
+    :FOR    ${element}    IN     @{elements}
+    \       Click Element       ${element}
+    \       Click Element       ${closeModal}    #Close button should close big modals
+    \       Location Should Be      http://arcade.kwikfood.com/
+    \       Execute JavaScript   window.scrollTo (900,100)
+    \       Click Element        ${element}
+    \       Press Key   	css=.modal-header-content   	\\27  #Escape should close big modals
+    \       Page should not contain element         css=.ng-scope-hide-outlines-modal-open
+    \       Execute JavaScript   window.scrollTo (900,100)
+

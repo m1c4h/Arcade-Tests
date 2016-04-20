@@ -21,7 +21,7 @@ parser.add_argument('-s', '--SAUCE', nargs='?', type=str.upper, choices=['TRUE',
 parser.add_argument('-u', '--USERNAME', nargs='?', help='Replace with your username if desired.' , default=defaultUserName, metavar='')
 parser.add_argument('-p', '--PASSWORD', nargs='?', help='Replace with your password if desired.', metavar='')
 parser.add_argument('-n', '--PROCESSES', nargs='?', help='Number of processes to run with [Default: ' + str(numCPUs) + ']', default=numCPUs, metavar='')
-
+# parser.add_argument('-b', '--BROWSERS', nargs='?', help='Browsers to Run With + ']', default=numCPUs, metavar='')
 args = parser.parse_args()
 
 
@@ -33,7 +33,7 @@ def rerunFunction(processNum,curWorkDir):
     rerunFilePath='rerun.xml';
     print 'Failures in batch causing rerun of failed scripts second time'
 
-    reruncommand='pabot --nostatusrc --rerunfailed' +' '+outputFilePath + ' --output'+' '+rerunFilePath+' '+ ' --variable SPOT_TEST_ENV:' + args.ENV + \
+    reruncommand='pabot --nostatusrc --rerunfailed' +' '+outputFilePath + ' --output'+' '+rerunFilePath+' '+ ' --variable RALLY_TEST_ENV:' + args.ENV + \
                   ' --variable ON_DEMAND:' + args.SAUCE + \
                   ' --variable PROCESSES:' + args.PROCESSES + \
                   ' --variable RALLY_SUPER_USERNAME:' + args.USERNAME + \
@@ -73,7 +73,9 @@ if (len(args.RUN) > 0):
     p1.wait()
 
 #Find out if any of the tags that should be rerun are in the rerun_tags list and then call the rerunFunction
-rerun_tags=['ALL','SMOKE','ALEXBOT_LONGCHECK','ALEXBOT_CHOICELOGIN']
+rerun_tags=['ALL','SMOKE']
+# we stop the script here if all the tests were OK
+
 
 if any(args.RUN[0].upper() in s for s in rerun_tags):
       print(args.RUN[0].upper())
