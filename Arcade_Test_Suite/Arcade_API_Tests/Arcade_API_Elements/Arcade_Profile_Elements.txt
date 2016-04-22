@@ -1,0 +1,6 @@
+*** Settings ***
+Documentation     Varibales for arcade page basics
+
+*** Variables ***
+@{Arcade_profile_fields} =   "rallyId"    "firstName"    "lastName"  "dependants"  "dependentSeqNo"  "firstName"   "lastName"  "plans"  "planType"    "planName"    "groupNumber"  "policyNumber"    "identifiers"   "memberId"    "subscriberId"    "alternateId"  "medicaidId"    "medicareHICID"   "survivingSpouseId"       "governmentTypeCode"   "startDate"    "endDate"   "hasIdCard"   "pcpEligible"
+

@@ -13,28 +13,26 @@ Library           OperatingSystem
 Library           HttpLibrary.HTTP
 Library           Selenium2Library
 Test Teardown      close browser
-#Library           ../Resources/ValidateJsonSchema.py
+Resource          ../Arcade_API_Elements/Arcade_Profile_Elements.txt
 
 
 *** Variables ***
 
 
 *** Test Cases ***
-set Param
-    [Documentation]    this test case is to set parameters in doppelganger and check response
-    [Tags]  param
-    Open DG and set params  plan-details    success
+Arcade Profile API
+    [Documentation]    Test for Arcade Profile API
+    [Tags]  Arcade_Profile
     Build Session
-    ${resp}=   get request      doppelganger       /rest/response/v1/partners/optum/services/plan-details        headers=&{headers}
+    ${resp}=	Get Request 	rallyroot   	/rest/profile/v1/:rallyId       headers=&{headers}
+    Should Be Equal As Strings	${resp.status_code}	200
     log    ${resp.json}
     log    ${resp.content}
-    Should be equal as numbers    ${resp.status_code}   200
-    should contain                ${resp.content}       "success"
-    ${resp}=   get request      doppelganger        /uhc/benefits/plans/v3.6/plandetails.json        headers=&{headers}
-    log    ${resp.json}
-    log    ${resp.content}
-    Should be equal as numbers    ${resp.status_code}   200
-    should contain                ${resp.content}       {"member":[{"eligibility":[{"benefitSet":[
+
+    :FOR    ${item}    in     @{Arcade_profile_fields}
+    \       Should Contain    ${resp.content}     ${item}
+
+
 
 
 

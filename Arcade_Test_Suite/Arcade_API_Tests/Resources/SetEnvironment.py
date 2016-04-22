@@ -19,6 +19,7 @@ def get_variables(environment):
 
     else:
         setParamsUrl = 'https://doppelganger-arcade-' + passedENV + '.consul.werally.in/'
+
         benefitsPlanApi= setParamsUrl+'benefits/plans/v3.6/plandetails.json'
         print setParamsUrl
         print benefitsPlanApi
