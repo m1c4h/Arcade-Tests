@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     These tests are aimed at testing a Arcade API's
 Test Setup
-Force Tags        API
+Force Tags        API   ALL
 Resource          ../Keywords/ApiActions.txt
 Resource          ../Keywords/PayloadData.txt
 Resource          ../Keywords/Vars/SearchVars.txt
