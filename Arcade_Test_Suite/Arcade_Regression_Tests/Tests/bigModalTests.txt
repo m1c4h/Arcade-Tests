@@ -32,3 +32,26 @@ Big Modal Test
     \       Location Should Be      http://arcade.kwikfood.com/
     \       Execute JavaScript   window.scrollTo (900,100)
 
+
+
+
+Big Modal Test
+    [Documentation]    This test validates big modals open ,close and persists after page reload.Loops through 4 big modals.
+    [Tags]     bigModal_local
+    Open Arcade
+    reload page
+    @{elements}     Get Elements     ${bigModal}
+    #Loop through all the big modal window and perform these assertions
+    :FOR    ${element}    IN     @{elements}
+    \       Click Element       ${element}
+    \       Click Element       ${closeModal}    #Close button should close big modals
+    \       Location Should Be      http://arcade.kwikfood.com/
+    \       Execute JavaScript   window.scrollTo (10,350)
+    \       Click Element        ${element}
+    \       Press Key   	css=.modal-header-content   	\\27  #Escape should close big modals
+    \       Location Should Be      http://arcade.kwikfood.com/
+    \       Execute JavaScript   window.scrollTo (10,350)
+    \       Click Element        ${element}
+    \       Go Back     #Go back on browser window should close big modals
+    \       Location Should Be      http://arcade.kwikfood.com/
+    \       Execute JavaScript   window.scrollTo (10,350)
