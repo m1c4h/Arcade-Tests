@@ -30,9 +30,30 @@ COMMON = {
         'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade IE Automated Test Suite,platform:Windows 10,browserName:internet explorer,version:latest ,javascriptEnabled:True',
         'RALLY_SELENIUM_TIMEOUT': '10',
         'RALLY_SELENIUM_SPEED': '.4'
+            },
+        'ALL' :{'FF': {
+        'RALLY_SELENIUM_BROWSER': 'FF',
+        'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade FF Automated Test Suite,platform:Windows 7,browserName:FireFox,version:latest-1 ,javascriptEnabled:True',
+        'RALLY_SELENIUM_TIMEOUT': '10',
+        'RALLY_SELENIUM_SPEED': '.4'
+            },
+        'CHROME': {
+        'RALLY_SELENIUM_BROWSER': 'CHROME',
+        'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade CHROME Automated Test Suite,platform:Windows 7,browserName:Chrome,version:latest-1 ,javascriptEnabled:True',
+        'RALLY_SELENIUM_TIMEOUT': '10',
+        'RALLY_SELENIUM_SPEED': '.4'
+            },
+        'IE': {
+        'RALLY_SELENIUM_BROWSER': 'IE',
+        'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade IE Automated Test Suite,platform:Windows 10,browserName:internet explorer,version:latest ,javascriptEnabled:True',
+        'RALLY_SELENIUM_TIMEOUT': '10',
+        'RALLY_SELENIUM_SPEED': '.4'
         }
     }
-}
+}}
 msg_prefix = inspect.getfile(inspect.currentframe()) + ': '
 msg_prefix = msg_prefix.replace('\\', '/')
 
@@ -65,6 +86,9 @@ def get_variables(environment, on_demand, browser):
         'RALLY_TEST_URL': url
     }
 
+
+
+
     # Checks to see if the Environment and OnDemand variables are used
     if re.match('\\$\\{.*\\}', ondem) != None:
         env = COMMON.keys()[0]
@@ -77,5 +101,6 @@ def get_variables(environment, on_demand, browser):
     logger.info(msg_prefix + 'Defining arcade web variables for environment ' + passedENV)
     logger.console(msg_prefix + 'Defining arcade web variables for environment ' + passedENV)
 
-
+    print       list(COMMON[ondem][browser].items())
+    print       list(ENVS.items())
     return dict(list(COMMON[ondem][browser].items()) + list(ENVS.items()))

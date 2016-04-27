@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     These tests are aimed at testing a simple enrollment
+Documentation     These tests are aimed at testing content hopper functionality
 Library  OperatingSystem
 Library  String
 #Test Setup

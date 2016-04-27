@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     These tests are aimed at testing a simple enrollment
+Documentation     TThese tests are aimed at testing small modal windows
 Library  OperatingSystem
 Library  String
 #Test Setup

@@ -9,7 +9,7 @@ Library           DateTime
 Library           DebugLibrary
 Library           RequestsLibrary
 Library           FakerLibrary
-Variables         ../Resources/SetEnvironment.py    ${RALLY_TEST_ENV}    ${ON_DEMAND}       ${RALLY_SELENIUM_BROWSER}
+Variables         ../Resources/SetEnvironment.py    ${RALLY_TEST_ENV}    ${ON_DEMAND}   ${RALLY_SELENIUM_BROWSER}
 Resource          ../Elements/ArcadeBaseElements.txt
 
 
@@ -22,6 +22,7 @@ Open Website
     #following is here to accommodate osprey not liking simultaneous requests.
     ${randomDelay}=    Evaluate    random.sample(range(1000, 10000), 1)    random
     sleep    ${randomDelay[0]}ms
+    log         ${RALLY_SELENIUM_BROWSER}
     Open Browser    ${Site_URL}    ${RALLY_SELENIUM_BROWSER}    \    ${RALLY_REMOTE_URL}    ${RALLY_DESIRED_CAPABILITIES}
     Comment     Run Keyword Unless    Open Browser    ${Site_URL}    browser=${RALLY_SELENIUM_BROWSER}
     Set Window Size    ${1450}    ${1200}
