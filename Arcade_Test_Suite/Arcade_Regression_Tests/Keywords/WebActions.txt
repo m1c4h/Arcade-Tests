@@ -9,7 +9,7 @@ Library           DateTime
 Library           DebugLibrary
 Library           RequestsLibrary
 Library           FakerLibrary
-Variables         ../Resources/SetEnvironment.py    ${RALLY_TEST_ENV}    ${ON_DEMAND}
+Variables         ../Resources/SetEnvironment.py    ${RALLY_TEST_ENV}    ${ON_DEMAND}       ${RALLY_SELENIUM_BROWSER}
 Resource          ../Elements/ArcadeBaseElements.txt
 
 
@@ -29,8 +29,8 @@ Open Website
     set selenium timeout    30
 
 Open Arcade
-#   Open Website    ${RALLY_TEST_URL}
-   Open Website     http://arcade.kwikfood.com
+   Open Website    ${RALLY_TEST_URL}
+#   Open Website     http://arcade.kwikfood.com
 #   Maximize Browser window
 
 #this keyword will return a list or array of webelements that match the locator .To access elements in tc use @{elementsList}[0]

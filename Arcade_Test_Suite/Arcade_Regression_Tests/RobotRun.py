@@ -17,11 +17,12 @@ parser = argparse.ArgumentParser(description='Take values for running automation
 
 parser.add_argument('-e', '--ENV', nargs='?', type=str.upper, help='Any valid environment [Default: LOCAL]', default='LOCAL', metavar='')
 parser.add_argument('-r', '--RUN', nargs='+', help='Space separated tags to run (ALL to run all batches in parallel) [Default: DEV]', default=['DEV'], metavar='')
-parser.add_argument('-s', '--SAUCE', nargs='?', type=str.upper, choices=['TRUE','FALSE'], help='TRUE, FALSE [Default: FALSE]' , default='FALSE', metavar='')
+parser.add_argument('-s', '--SAUCE', nargs='?', type=str.upper, choices=['TRUE','FALSE'], help='TRUE, FALSE [Default: TRUE]' , default='TRUE', metavar='')
+parser.add_argument('-b', '--BROWSER', nargs='?', type=str.upper, choices=['FF','CHROME','IE'], help='FF, CHROME,IE [Default: FF]' , default='FF', metavar='')
 parser.add_argument('-u', '--USERNAME', nargs='?', help='Replace with your username if desired.' , default=defaultUserName, metavar='')
 parser.add_argument('-p', '--PASSWORD', nargs='?', help='Replace with your password if desired.', metavar='')
 parser.add_argument('-n', '--PROCESSES', nargs='?', help='Number of processes to run with [Default: ' + str(numCPUs) + ']', default=numCPUs, metavar='')
-# parser.add_argument('-b', '--BROWSERS', nargs='?', help='Browsers to Run With + ']', default=numCPUs, metavar='')
+
 args = parser.parse_args()
 
 
@@ -37,6 +38,7 @@ def rerunFunction(processNum,curWorkDir):
                   ' --variable ON_DEMAND:' + args.SAUCE + \
                   ' --variable PROCESSES:' + args.PROCESSES + \
                   ' --variable RALLY_SUPER_USERNAME:' + args.USERNAME + \
+                  ' --variable RALLY_SELENIUM_BROWSER:' + args.BROWSER + \
                   ' --variable RALLY_SUPER_PASSWORD:' + userPassword + ' ' + 'Tests'
     print 'merging and creating final output.xml'
 
@@ -59,9 +61,8 @@ elif(args.USERNAME == defaultUserName):
 setVariableArgs = ' --processes ' + str(args.PROCESSES) + \
                   ' --variable RALLY_TEST_ENV:' + args.ENV + \
                   ' --variable ON_DEMAND:' + args.SAUCE + \
-                  ' --variable RALLY_SUPER_USERNAME:' + args.USERNAME + \
-                  ' --variable RALLY_SUPER_PASSWORD:' + userPassword + \
-                  ' --nostatusrc'
+                  ' --variable RALLY_SELENIUM_BROWSER: '+ args.BROWSER
+
 
 if (len(args.RUN) > 0):
     currentDir= os.getcwd()

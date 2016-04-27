@@ -10,26 +10,44 @@ COMMON = {
               'RALLY_SELENIUM_TIMEOUT': '10',
               'RALLY_SELENIUM_SPEED': '.2'
               },
-    'TRUE': {
+    'TRUE': {'FF': {
         'RALLY_SELENIUM_BROWSER': 'FF',
         'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
-        'RALLY_DESIRED_CAPABILITIES': 'name:RallyArcade Automated Test Suite,platform:Windows 7,browserName:FireFox,version:latest-1 ,javascriptEnabled:True',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade FF Automated Test Suite,platform:Windows 7,browserName:FireFox,version:latest-1 ,javascriptEnabled:True',
         'RALLY_SELENIUM_TIMEOUT': '10',
         'RALLY_SELENIUM_SPEED': '.4'
+            },
+        'CHROME': {
+        'RALLY_SELENIUM_BROWSER': 'CHROME',
+        'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade CHROME Automated Test Suite,platform:Windows 7,browserName:Chrome,version:latest-1 ,javascriptEnabled:True',
+        'RALLY_SELENIUM_TIMEOUT': '10',
+        'RALLY_SELENIUM_SPEED': '.4'
+            },
+        'IE': {
+        'RALLY_SELENIUM_BROWSER': 'IE',
+        'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade IE Automated Test Suite,platform:Windows 10,browserName:internet explorer,version:latest ,javascriptEnabled:True',
+        'RALLY_SELENIUM_TIMEOUT': '10',
+        'RALLY_SELENIUM_SPEED': '.4'
+        }
     }
 }
-
 msg_prefix = inspect.getfile(inspect.currentframe()) + ': '
 msg_prefix = msg_prefix.replace('\\', '/')
 
 
-def get_variables(environment, on_demand):
+def get_variables(environment, on_demand, browser):
     variables = {"Environment": environment,
-                 "On Demand": on_demand
+                 "On Demand": on_demand,
+                 "Browser": browser
                  }
 
     passedENV = str(environment).upper()
+    print passedENV
     ondem = str(on_demand).upper()
+    browser= str(browser).upper()
+    print ondem
 
     if (passedENV.upper() == 'LOCAL'):
         url = 'localhost:10088'
@@ -56,7 +74,8 @@ def get_variables(environment, on_demand):
             'Undefined on demand: ' + str(on_demand) + '. Try one of these: ' + ', '.join(
                 sorted(COMMON.keys())))
 
-    logger.info(msg_prefix + 'Defining connect web variables for environment ' + passedENV)
-    logger.console(msg_prefix + 'Defining connect web variables for environment ' + passedENV)
+    logger.info(msg_prefix + 'Defining arcade web variables for environment ' + passedENV)
+    logger.console(msg_prefix + 'Defining arcade web variables for environment ' + passedENV)
 
-    return dict(list(COMMON[ondem].items()) + list(ENVS.items()))
+
+    return dict(list(COMMON[ondem][browser].items()) + list(ENVS.items()))
