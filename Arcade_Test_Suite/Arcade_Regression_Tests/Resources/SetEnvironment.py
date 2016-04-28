@@ -4,12 +4,13 @@ import inspect
 import re
 
 COMMON = {
-    'FALSE': {'RALLY_SELENIUM_BROWSER': 'Firefox',
+    'FALSE': {
+              'RALLY_SELENIUM_BROWSER': 'FF',
               'RALLY_REMOTE_URL': '',
               'RALLY_DESIRED_CAPABILITIES': 'none',
               'RALLY_SELENIUM_TIMEOUT': '10',
               'RALLY_SELENIUM_SPEED': '.2'
-              },
+           },
     'TRUE': {'FF': {
         'RALLY_SELENIUM_BROWSER': 'FF',
         'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
@@ -46,7 +47,7 @@ def get_variables(environment, on_demand, browser):
     passedENV = str(environment).upper()
     print passedENV
     ondem = str(on_demand).upper()
-    browser= str(browser).upper()
+    # browser= str(browser).upper()
     print ondem
     print browser
 
@@ -78,15 +79,17 @@ def get_variables(environment, on_demand, browser):
             'Undefined on demand: ' + str(on_demand) + '. Try one of these: ' + ', '.join(
                 sorted(COMMON.keys())))
 
-
-
     logger.info(msg_prefix + 'Defining arcade web variables for environment ' + passedENV)
     logger.console(msg_prefix + 'Defining arcade web variables for environment ' + passedENV)
-    print       "dict here" + dict(list(COMMON[ondem][browser].items()))
-    print       list(ENVS.items())
 
-    print       '*************************************************'
-    print       dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
-    print       '*************************************************'
-    return  dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
+    if  ondem == 'FALSE':
+       print        dict(list(COMMON[ondem].items()))
+       return  dict(list(COMMON[ondem].items()) +list(ENVS.items()))
+    else:
+         print       dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
+         return  dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
+
+
+
+
 
