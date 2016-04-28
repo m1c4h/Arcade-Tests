@@ -12,6 +12,7 @@ defaultUserName = 'ezeffery@spotlite.com'
 defaultPassword = 'T3st123!'
 userPassword = ''
 setIncludedTags = ''
+browser=['FF','CHROME','IE']
 
 parser = argparse.ArgumentParser(description='Take values for running automation')
 
@@ -58,20 +59,39 @@ elif(args.USERNAME != defaultUserName and args.PASSWORD != None):
 elif(args.USERNAME == defaultUserName):
     userPassword = defaultPassword
 
-setVariableArgs = ' --processes ' + str(args.PROCESSES) + \
-                  ' --variable RALLY_TEST_ENV:' + args.ENV + \
-                  ' --variable ON_DEMAND:' + args.SAUCE + \
-                  ' --variable RALLY_SELENIUM_BROWSER:'+ args.BROWSER
+if (args.BROWSER != 'ALL'):
+
+    setVariableArgs = ' --processes ' + str(args.PROCESSES) + \
+                      ' --variable RALLY_TEST_ENV:' + args.ENV + \
+                      ' --variable ON_DEMAND:' + args.SAUCE + \
+                      ' --variable RALLY_SELENIUM_BROWSER:'+ args.BROWSER
 
 
-if (len(args.RUN) > 0):
-    currentDir= os.getcwd()
-    dir = os.path.dirname(__file__)
+    if (len(args.RUN) > 0):
+        currentDir= os.getcwd()
+        dir = os.path.dirname(__file__)
 
-    setIncludedTags = '--include ' + ' --include '.join(args.RUN)
-    p1 = subprocess.Popen('pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests/', shell=True)
-    print 'pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests'
-    p1.wait()
+        setIncludedTags = '--include ' + ' --include '.join(args.RUN)
+        p1 = subprocess.Popen('pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests/', shell=True)
+        print 'pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests'
+        p1.wait()
+elif(args.BROWSER == 'ALL'):
+  for br in browser:
+    setVariableArgs = ' --processes ' + str(args.PROCESSES) + \
+                      ' --variable RALLY_TEST_ENV:' + args.ENV + \
+                      ' --variable ON_DEMAND:' + args.SAUCE + \
+                      ' --variable RALLY_SELENIUM_BROWSER:'+ br
+
+
+    if (len(args.RUN) > 0):
+        currentDir= os.getcwd()
+        dir = os.path.dirname(__file__)
+
+        setIncludedTags = '--include ' + ' --include '.join(args.RUN)
+        p1 = subprocess.Popen('pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests/', shell=True)
+        print 'pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests'
+        p1.wait()
+
 
 #Find out if any of the tags that should be rerun are in the rerun_tags list and then call the rerunFunction
 rerun_tags=['ALL','SMOKE']
