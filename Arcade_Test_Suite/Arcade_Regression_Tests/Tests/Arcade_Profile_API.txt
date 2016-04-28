@@ -3,8 +3,6 @@ Documentation     These tests are aimed at testing a Arcade API's
 Test Setup
 Force Tags        API   ALL
 Resource          ../Keywords/ApiActions.txt
-Resource          ../Keywords/PayloadData.txt
-Resource          ../Keywords/Vars/SearchVars.txt
 Library           RequestsLibrary
 Suite Teardown   Delete All Sessions
 Library           Collections
@@ -13,7 +11,7 @@ Library           OperatingSystem
 Library           HttpLibrary.HTTP
 Library           Selenium2Library
 Test Teardown      close browser
-Resource          ../Arcade_API_Elements/Arcade_Profile_Elements.txt
+Resource          ../Elements/Arcade_Profile_Elements.txt
 
 
 *** Variables ***

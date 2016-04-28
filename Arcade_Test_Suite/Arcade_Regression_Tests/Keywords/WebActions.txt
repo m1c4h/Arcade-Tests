@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     Keywords relevant for the entire spotlite.com website. \ Variables are populated based on the value of ${SPOT_TEST ENV} using a variables file.
+Documentation     Key
 #Library           Selenium2Library    run_on_failure=Capture Page Screenshot
 Library           ExtendedSelenium2Library              run_on_failure=Capture Page Screenshot
 Library           Collections
