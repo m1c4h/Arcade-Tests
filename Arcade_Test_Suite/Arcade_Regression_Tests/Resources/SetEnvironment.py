@@ -61,7 +61,7 @@ def get_variables(environment, on_demand, browser):
     else:
         url = 'https://' + passedENV.lower() + '-arcade.werally.in'
 
-    print   url
+    print   "url is" +url
 
 
     ENVS = {
@@ -85,11 +85,12 @@ def get_variables(environment, on_demand, browser):
     if  ondem == 'FALSE':
        print    "ondem" +ondem
        print        dict(list(COMMON[ondem].items()))
-       return  dict(list(COMMON[ondem].items()) +list(ENVS.items()))
+       print        list(ENVS.items())
+       return       dict(list(COMMON[ondem].items()) +list(ENVS.items()))
     else:
-         print    "ondem" +ondem
-         print       dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
-         return  dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
+        print    "ondem" +ondem
+        print       dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
+        return  dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
 
 
 
