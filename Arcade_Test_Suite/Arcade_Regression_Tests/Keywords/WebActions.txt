@@ -29,7 +29,9 @@ Open Website
 
     Open Browser    ${Site_URL}    ${RALLY_SELENIUM_BROWSER}    \    ${RALLY_REMOTE_URL}    ${RALLY_DESIRED_CAPABILITIES}
     Comment     Run Keyword Unless    Open Browser    ${Site_URL}    browser=${RALLY_SELENIUM_BROWSER}
-    Set Window Size    ${1450}    ${1200}
+    Set Window Size    ${1280}    ${1024}
+#   Set Window Size    ${1000}    ${600}
+
     set selenium speed    ${RALLY_SELENIUM_SPEED}
     set selenium timeout    30
 

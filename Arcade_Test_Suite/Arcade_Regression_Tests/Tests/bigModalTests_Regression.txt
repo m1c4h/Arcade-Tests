@@ -17,7 +17,7 @@ Big Modal Test
     [Documentation]    This test validates big modals open ,close and persists after page reload.Loops through 4 big modals.
     [Tags]     bigModal1
     Open Arcade
-    reload page
+#    reload page
     @{elements}     Get Elements     ${bigModal}
     #Loop through all the big modal window and perform these assertions
     :FOR    ${element}    IN     @{elements}
@@ -30,7 +30,10 @@ Big Modal Test
     \       ${horz_pos} =    Get Horizontal Position     ${element}
     \       Execute JavaScript   window.scrollTo (10,250)
     \       Click Element        ${element}
-    \       Press Key   	css=.modal-header-content   	\\27  #Escape should close big modals
+    \        Execute JavaScript   ("document.getElementByClass('ng-scope.hide-outlines.modal-open').focus()");
+    \
+    \       Press Key   	css=.ng-scope.hide-outlines.modal-open    	\\27  #Escape should close big modals
+   
     \       Location Should Be     ${str3}
     \       Execute JavaScript   window.scrollTo (10,350)
     \       Click Element        ${element}
