@@ -12,14 +12,14 @@ defaultUserName = 'ezeffery@spotlite.com'
 defaultPassword = 'T3st123!'
 userPassword = ''
 setIncludedTags = ''
-browser=['FF','CHROME','IE']
+browser=['FF','CHROME']
 
 parser = argparse.ArgumentParser(description='Take values for running automation')
 
 parser.add_argument('-e', '--ENV', nargs='?', type=str.upper, help='Any valid environment [Default: LOCAL]', default='LOCAL', metavar='')
 parser.add_argument('-r', '--RUN', nargs='+', help='Space separated tags to run (ALL to run all batches in parallel) [Default: DEV]', default=['DEV'], metavar='')
 parser.add_argument('-s', '--SAUCE', nargs='?', type=str.upper, choices=['TRUE','FALSE'], help='TRUE, FALSE [Default: TRUE]' , default='TRUE', metavar='')
-parser.add_argument('-b', '--BROWSER', nargs='?', type=str.upper, choices=['FF','CHROME','IE','ALL'], help='FF, CHROME,IE ,ALL[Default: FF]' , default='FF', metavar='')
+parser.add_argument('-b', '--BROWSER', nargs='?', type=str.upper, choices=['FF','CHROME','IE','ALL'], help='FF, CHROME,IE ,ALL[Default: FF]' , default='Firefox', metavar='')
 parser.add_argument('-u', '--USERNAME', nargs='?', help='Replace with your username if desired.' , default=defaultUserName, metavar='')
 parser.add_argument('-p', '--PASSWORD', nargs='?', help='Replace with your password if desired.', metavar='')
 parser.add_argument('-n', '--PROCESSES', nargs='?', help='Number of processes to run with [Default: ' + str(numCPUs) + ']', default=numCPUs, metavar='')
@@ -35,7 +35,7 @@ def rerunFunction(processNum,curWorkDir):
     rerunFilePath='rerun.xml';
     print 'Failures in batch causing rerun of failed scripts second time'
 
-    reruncommand='pabot --nostatusrc --rerunfailed' +' '+outputFilePath + ' --output'+' '+rerunFilePath+' '+ ' --variable RALLY_TEST_ENV:' + args.ENV + \
+    reruncommand='pabot --nostatusrc --rerunfailed' +' '+outputFilePath + ' --output'+' '+rerunFilePath+' '+ ' --variable RALLY_TEST_URL:' + args.ENV + \
                   ' --variable ON_DEMAND:' + args.SAUCE + \
                   ' --variable PROCESSES:' + args.PROCESSES + \
                   ' --variable RALLY_SUPER_USERNAME:' + args.USERNAME + \

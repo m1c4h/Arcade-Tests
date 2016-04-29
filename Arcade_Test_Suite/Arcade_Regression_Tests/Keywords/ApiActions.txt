@@ -10,15 +10,13 @@ Library           FakerLibrary
 Library           DateTime
 Library           DebugLibrary
 Variables         ../Resources/SetEnvironment.py    ${RALLY_TEST_ENV}
-Resource          ../../Arcade_Regression_Tests/Elements/ArcadeBaseElements.txt
-Resource          ../Arcade_API_Elements/Arcade_Profile_Elements.txt
+Resource          ../Elements/Arcade_Profile_Elements.txt
 
 
 
 *** Variables ***
-${SERVICE_ROOT}   https://rallyadmin-dev-yolo.werally.in
+
 ${SERVICE_NAME}   api
-${SERVICE_TOKEN}    /api/v1/eligibilitySubmission
 ${Str1}     css=[value*='
 ${Str2}     ']
 
@@ -29,43 +27,7 @@ Build Session
     set test variable    &{headers}    Content-Type=application/json    Accept=Language=en-US    Pragma=no-cache    Accept=application/json    Cache-Control=no-cache    Accept-Encoding=gzip,deflate    User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:42) Gecko/20100101 Firefox/42.0
 
 
-get providers
-    [Tags]   json
 
-    log    The user is ${RALLY_SUPER_USERNAME}
-    Log    Hitting the API in ${RALLY_URL_ADMIN}
-    Set Random Record Data Payload
-    ${document}=  Catenate
-    ...  {
-    ...  "memberNumber" : "${randomID}",
-    ...  "last4SSN" : "9433",
-    ...  "SSN" : "666439433",
-    ...  "lastName" : "wonka",
-    ...  "firstName" : "jan",
-    ...  "dateOfBirth" : "11/21/1991",
-    ...  "partnerUserId" : "${partner_id}",
-    ...  "parentClientId" : "",
-    ...  "clientId" : "0185002",
-    ...  "segmentationId": "PREM_CROSS_C_TARGET_UHC_HSA",
-    ...  "partnerName": "optum",
-    ...  "clientName": "target",
-    ...  "affiliationName": "optum_target_uhc_hsa",
-    ...  "startDate": "",
-    ...  "endDate": "",
-    ...  "eligibilityFlags": { "testing": true, "cobra": false, "medicare": false }
-    ...  }
-    Should Be Valid JSON    ${document}
-    ${result}=       Get Json Value  ${document}  /eligibilityFlags/testing
-    Should Be Equal   ${result}       true
-
-    ${auth}=   Create List   ${RALLY_SUPER_USERNAME}   ${RALLY_SUPER_PASSWORD}
-    Create Session    head     ${RALLY_URL_ADMIN}     verify=True     auth=${auth}
-    set test variable    &{headers}    Content-Type=application/json
-    ${resp}=   get request    head   /rest/provider/v1   data=${document}   headers=&{headers}
-
-    log    ${resp.json}
-    log    ${resp.content}
-    Should be equal as numbers    ${resp.status_code}   200
 
 Open Website
     [Arguments]    ${Site_URL}

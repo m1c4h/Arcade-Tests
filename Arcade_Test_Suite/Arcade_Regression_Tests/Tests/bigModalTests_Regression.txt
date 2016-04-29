@@ -5,7 +5,7 @@ Library  OperatingSystem
 Library  String
 #Test Setup
 Resource          ../Keywords/WebActions.txt
-Force Tags        ALL  Arcade1  bigModal
+Force Tags        ALL  Arcade1   Regression
 Test Teardown       close browser
 
 
