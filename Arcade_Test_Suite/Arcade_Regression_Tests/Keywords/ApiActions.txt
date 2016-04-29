@@ -9,7 +9,7 @@ Library           OperatingSystem
 Library           FakerLibrary
 Library           DateTime
 Library           DebugLibrary
-Variables         ../Resources/SetEnvironment.py    ${RALLY_TEST_ENV}
+Variables         ../Resources/SetEnvironment.py     ${RALLY_TEST_ENV}    ${ON_DEMAND}   ${RALLY_SELENIUM_BROWSER}
 Resource          ../Elements/Arcade_Profile_Elements.txt
 
 
