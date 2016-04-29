@@ -83,9 +83,11 @@ def get_variables(environment, on_demand, browser):
     logger.console(msg_prefix + 'Defining arcade web variables for environment ' + passedENV)
 
     if  ondem == 'FALSE':
+       print    "ondem" +ondem
        print        dict(list(COMMON[ondem].items()))
        return  dict(list(COMMON[ondem].items()) +list(ENVS.items()))
     else:
+         print    "ondem" +ondem
          print       dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
          return  dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
 
