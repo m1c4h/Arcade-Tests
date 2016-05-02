@@ -8,28 +8,35 @@ COMMON = {
               'RALLY_SELENIUM_BROWSER': 'FF',
               'RALLY_REMOTE_URL': '',
               'RALLY_DESIRED_CAPABILITIES': 'none',
-              'RALLY_SELENIUM_TIMEOUT': '10',
+              'RALLY_SELENIUM_TIMEOUT': '2',
               'RALLY_SELENIUM_SPEED': '.2'
            },
     'TRUE': {'FF': {
         'RALLY_SELENIUM_BROWSER': 'FF',
         'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
         'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade FF Automated Test Suite,platform:Windows 7,browserName:FireFox,version:latest-1 ,javascriptEnabled:True',
-        'RALLY_SELENIUM_TIMEOUT': '10',
+        'RALLY_SELENIUM_TIMEOUT': '2',
         'RALLY_SELENIUM_SPEED': '.4'
             },
         'CHROME': {
         'RALLY_SELENIUM_BROWSER': 'CHROME',
         'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
         'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade CHROME Automated Test Suite,platform:Windows 10,browserName:Chrome,version:latest-1,javascriptEnabled:True',
-        'RALLY_SELENIUM_TIMEOUT': '10',
+        'RALLY_SELENIUM_TIMEOUT': '2',
+        'RALLY_SELENIUM_SPEED': '.4'
+            },
+         'SAFARI': {
+        'RALLY_SELENIUM_BROWSER': 'CHROME',
+        'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade SAFARI Automated Test Suite,platform:OS X 10.10,browserName:safari,version:8.0,javascriptEnabled:True,screenResolution: 1376x1032',
+        'RALLY_SELENIUM_TIMEOUT': '2',
         'RALLY_SELENIUM_SPEED': '.4'
             },
         'IE': {
         'RALLY_SELENIUM_BROWSER': 'IE',
         'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
-        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade IE Automated Test Suite,platform:Windows 10,browserName:IE,version:latest-1 ,javascriptEnabled:True',
-        'RALLY_SELENIUM_TIMEOUT': '10',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade IE Automated Test Suite,platform:Windows 10,browserName:internet explorer,version:latest ,javascriptEnabled:True,maxDuration:120,nativeEvents:false,ignoreZoomSetting: true',
+        'RALLY_SELENIUM_TIMEOUT': '1',
         'RALLY_SELENIUM_SPEED': '.4'
             },
         'ALL' :{

@@ -15,7 +15,9 @@ Content Hopper Test
     [Tags]     hopper
     Open Arcade
     #get x and y cocordinates of element before scrolling
+     page should contain element        ${contentHopper}
     ${vert_pos} =    Get Vertical Position    ${contentHopper}
+
     ${horz_pos} =    Get Horizontal Position      ${contentHopper}
     log     ${vert_pos}
     log      ${horz_pos}
