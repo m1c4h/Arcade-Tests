@@ -20,7 +20,7 @@ Big Modal Test
 #    reload page
     @{elements}     Get Elements     ${bigModal}
     log         @{elements}[0]
-    Loop through all the big modal window and perform these assertions
+#    Loop through all the big modal window and perform these assertions
     :FOR    ${element}    IN     @{elements}
     \       Click Element       ${element}
     \       Click Element       ${closeModal}    #Close button should close big modals
