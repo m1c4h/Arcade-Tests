@@ -14,7 +14,7 @@ Test Teardown       close browser
 Big Modal Test
 
 
-    [Documentation]    This test validates big modals open ,close and persists after page reload.Loops through 4 big modals.
+    [Documentation]    This test validates big modals opens and closes using close button.
     [Tags]     bigModal1    Close
     Open Arcade
 #    reload page
