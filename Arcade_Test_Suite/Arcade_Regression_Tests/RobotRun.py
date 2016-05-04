@@ -12,7 +12,7 @@ defaultUserName = 'ezeffery@spotlite.com'
 defaultPassword = 'T3st123!'
 userPassword = ''
 setIncludedTags = ''
-browser=['FF','CHROME','IE']
+browser=['FF','CHROME','SAFARI']
 
 parser = argparse.ArgumentParser(description='Take values for running automation')
 
