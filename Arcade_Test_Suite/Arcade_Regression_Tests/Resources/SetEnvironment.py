@@ -39,6 +39,13 @@ COMMON = {
         'RALLY_SELENIUM_TIMEOUT': '1',
         'RALLY_SELENIUM_SPEED': '.4'
             },
+        'IPHONE': {
+        'RALLY_SELENIUM_BROWSER': 'iphone',
+        'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Iphone IE Automated Test Suite,platform:OS X 10.10,browserName:iphone,version:9.2 ,deviceName :iPhone 6 Plus,deviceOrientation :portrait,javascriptEnabled:True,maxDuration:60,nativeEvents:false,ignoreZoomSetting: true',
+        'RALLY_SELENIUM_TIMEOUT': '1',
+        'RALLY_SELENIUM_SPEED': '.4'
+            },
         'ALL' :{
         'RALLY_SELENIUM_BROWSER': 'ALL',
         'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
@@ -103,8 +110,8 @@ def get_variables(environment, on_demand, browser):
        return       dict(list(COMMON[ondem].items()) +list(ENVS.items()))
     else:
         print    "ondem" +ondem
-        print       dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
-        return  dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
+        print     dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
+        return    dict(list(COMMON[ondem][browser].items()) +list(ENVS.items()))
 
 
 

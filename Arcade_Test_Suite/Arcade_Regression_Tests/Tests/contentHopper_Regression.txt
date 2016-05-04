@@ -27,3 +27,5 @@ Content Hopper Test
     ${horz_pos} =    Get Horizontal Position      ${contentHopper}
     #Assert page has scrolled down by checking vertical position has increased from where we started.
     should be true       ${Second_vert_pos}>${vert_pos}
+    ${html}=        Get source
+    log         ${html}

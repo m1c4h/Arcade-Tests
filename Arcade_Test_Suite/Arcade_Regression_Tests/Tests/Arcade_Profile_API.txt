@@ -11,7 +11,7 @@ Library           OperatingSystem
 Library           HttpLibrary.HTTP
 Library           Selenium2Library
 Test Teardown      close browser
-Resource          ../Elements/Arcade_Profile_Elements.txt
+Resource          ../Elements/API_Arcade_Profile_Elements.txt
 
 
 *** Variables ***
