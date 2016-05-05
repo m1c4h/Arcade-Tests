@@ -11,11 +11,10 @@ Test Teardown       close browser
 
 
 *** Test Cases ***
-Big Modal Test
-
+Big Modal Test Go Back Button
 
     [Documentation]    This test validates big modals open  and close when browser go back button is used
-    [Tags]     bigModal1
+    [Tags]     bigModal1    Goback
     Open Arcade
     @{elements}     Get Elements     ${bigModal}
     log         @{elements}[0]

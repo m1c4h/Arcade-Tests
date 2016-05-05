@@ -11,11 +11,11 @@ Test Teardown       close browser
 
 
 *** Test Cases ***
-Big Modal Test
+Big Modal Test For Escape Key
 
 
     [Documentation]     This test validates big modals opens and closes using escape key
-    [Tags]     bigModal1   Escape
+    [Tags]       Escape
     Open Arcade
 #    reload page
     @{elements}     Get Elements     ${bigModal}

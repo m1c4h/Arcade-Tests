@@ -76,31 +76,29 @@ if (args.BROWSER != 'ALL'):
         print 'pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests'
         p1.wait()
 elif(args.BROWSER == 'ALL'):
-  for br in browser:
-    setVariableArgs = ' --processes ' + str(args.PROCESSES) + \
+        for br in browser:
+            setVariableArgs = ' --processes ' + str(args.PROCESSES) + \
                       ' --variable RALLY_TEST_ENV:' + args.ENV + \
                       ' --variable ON_DEMAND:' + args.SAUCE + \
                       ' --variable RALLY_SELENIUM_BROWSER:'+ br+ \
                       ' --name ' + br
 
+            if (len(args.RUN) > 0):
+                currentDir= os.getcwd()
+                dir = os.path.dirname(__file__)
+                setIncludedTags = '--include ' + ' --include '.join(args.RUN)
+                p1 = subprocess.Popen('pabot ' + setVariableArgs + ' ' + setIncludedTags +' Tests/', shell=True)
+                print 'pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests'
+                p1.wait()
+                print br
+                browserTests='rebot --output' ' '+ br +'.xml'  ' output.xml'
+                print "*******" + browserTests
+                p2 = subprocess.Popen(browserTests,shell=True)
+                p2.wait()
 
-    if (len(args.RUN) > 0):
-        currentDir= os.getcwd()
-        dir = os.path.dirname(__file__)
-
-        setIncludedTags = '--include ' + ' --include '.join(args.RUN)
-        p1 = subprocess.Popen('pabot ' + setVariableArgs + ' ' + setIncludedTags +' Tests/', shell=True)
-        print 'pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests'
-        p1.wait()
-        print br
-        browserTests='rebot --output' ' '+ br +'.xml'  ' output.xml'
-        print "*******" + browserTests
-        p2 = subprocess.Popen(browserTests,shell=True)
-        p2.wait()
-
-merge='rebot FF.xml  CHROME.xml SAFARI.xml '
-# merge='rebot output.xml'
-p3 = subprocess.Popen(merge,shell=True)
+        merge='rebot FF.xml  CHROME.xml SAFARI.xml '
+        # merge='rebot output.xml'
+        p3 = subprocess.Popen(merge,shell=True)
 
 #Find out if any of the tags that should be rerun are in the rerun_tags list and then call the rerunFunction
 rerun_tags=['ALL','SMOKE']

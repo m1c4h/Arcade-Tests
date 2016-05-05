@@ -1,0 +1,35 @@
+*** Settings ***
+Documentation     TThese tests are aimed at testing small modal windows
+Library  OperatingSystem
+Library  String
+#Test Setup
+Resource          ../Keywords/WebActions.txt
+Force Tags         Arcade1  Regression
+Test Teardown       close browser
+
+
+
+*** Test Cases ***
+Small Modal Test For Click anywhere
+    [Documentation]   This test validates small modals  opens and closes when you click anywhere other than small modal
+    [Tags]     smallmodal3  ClickAnywhere
+    Open Arcade
+    Reload Page
+    Click Element       ${roleDropdown}
+    mouse over          ${contentHopper}
+    mouse down          ${contentHopper}
+    mouse up            ${contentHopper}
+    ${url} =   	Catenate	SEPARATOR=  	${RALLY_TEST_URL}/
+    log     ${url}
+    Location should be      ${url}
+
+
+
+
+
+
+
+
+
+
+

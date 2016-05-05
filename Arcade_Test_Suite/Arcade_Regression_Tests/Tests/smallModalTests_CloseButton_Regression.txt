@@ -1,0 +1,36 @@
+*** Settings ***
+Documentation     TThese tests are aimed at testing small modal windows
+Library  OperatingSystem
+Library  String
+#Test Setup
+Resource          ../Keywords/WebActions.txt
+Force Tags         Arcade1  Regression
+Test Teardown       close browser
+
+
+
+*** Test Cases ***
+Small Modal Test
+    [Documentation]   This test validates small modals  open ,closes and persists after page reload
+    [Tags]     smallmodal   SmallClose
+    Open Arcade
+    Reload Page
+    Click Element       ${roleDropdown}
+    Page Should Contain Element         ${openModal}
+    click element       ${closeModal}
+    ${url} =   	Catenate	SEPARATOR=  	${RALLY_TEST_URL}/
+    log     ${url}
+    Location should be      ${url}
+
+
+
+
+
+
+
+
+
+
+
+
+
