@@ -87,7 +87,7 @@ elif(args.BROWSER == 'ALL'):
                 currentDir= os.getcwd()
                 dir = os.path.dirname(__file__)
                 setIncludedTags = '--include ' + ' --include '.join(args.RUN)
-                p1 = subprocess.Popen('pabot ' + setVariableArgs + ' ' + setIncludedTags +' Tests/', shell=True)
+                p1 = subprocess.Popen('pabot ' + setVariableArgs + ' ' + setIncludedTags +' Tests/')
                 print 'pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests'
                 p1.wait()
                 print br
@@ -96,20 +96,25 @@ elif(args.BROWSER == 'ALL'):
                 p2 = subprocess.Popen(browserTests,shell=True)
                 p2.wait()
 
-        merge='rebot FF.xml  CHROME.xml SAFARI.xml '
+        merge='rebot -N Cross_Browser_Compatibility  FF.xml  CHROME.xml SAFARI.xml '
         # merge='rebot output.xml'
         p3 = subprocess.Popen(merge,shell=True)
 
 #Find out if any of the tags that should be rerun are in the rerun_tags list and then call the rerunFunction
-rerun_tags=['ALL','SMOKE']
-# we stop the script here if all the tests were OK
 
 
-if any(args.RUN[0].upper() in s for s in rerun_tags):
+print p1.returncode
+
+if  (p1.returncode == 0 ):
+    # we stop the script here if all the tests were OK
+    print p1.returncode
+    print("No tags to be rerun")
+    exit(0)
+
+elif (p1.returncode > 0 ) :
+    rerun_tags=['REGRESSION','ALL']
+    if any(args.RUN[0].upper() in s for s in rerun_tags):
       print(args.RUN[0].upper())
       rerunFunction(p1,currentDir)
-else:
-    print("No tags to be rerun")
-
 
 print("done")
