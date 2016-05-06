@@ -1,0 +1,6 @@
+*** Settings ***
+Documentation     Varibales for arcade ledger api
+
+*** Variables ***
+@{Optum_financialaccounts_fields} =    "account"   "accountTypeCode"     "effectiveDateRange"     "startDate"   "stopDate"   "accountBalance"
+

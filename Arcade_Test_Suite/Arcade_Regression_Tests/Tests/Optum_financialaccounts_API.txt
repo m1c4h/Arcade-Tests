@@ -1,0 +1,35 @@
+*** Settings ***
+Documentation     These tests are aimed Optum Mocked API which maps to Arcade_Ledger_API
+Test Setup
+#Force Tags        API   ALL
+Resource          ../Keywords/ApiActions.txt
+Library           RequestsLibrary
+Suite Teardown   Delete All Sessions
+Library           Collections
+Library           String
+Library           OperatingSystem
+Library           HttpLibrary.HTTP
+Library           Selenium2Library
+Test Teardown      close browser
+Resource          ../Elements/Optum_financialaccounts_Elements.txt
+
+
+
+*** Test Cases ***
+Optum_financialaccounts_API
+    [Documentation]    Test for Optum_financialaccounts_API
+    [Tags]
+    Build Session
+    ${resp}=	Get Request 	rallyroot   	rest/ledger/v1/balance/u/:rallyId      headers=&{headers}
+    should be equal as numbers	${resp.status_code}	200
+    log    ${resp.json}
+    log    ${resp.content}
+    :FOR    ${item}    in     @{Optum_financialaccounts_fields}
+    \       Should Contain    ${resp.content}     ${item}
+
+
+
+
+
+
+

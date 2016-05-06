@@ -35,8 +35,8 @@ COMMON = {
         'IE': {
         'RALLY_SELENIUM_BROWSER': 'IE',
         'RALLY_REMOTE_URL': 'http://rallytest:d2ae1b7f-4fcb-4f9e-b0d7-d2b735d25262@ondemand.saucelabs.com:80/wd/hub',
-        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade IE Automated Test Suite,platform:Windows 10,browserName:internet explorer,version:latest ,javascriptEnabled:True,maxDuration:120,nativeEvents:false,ignoreZoomSetting: true',
-        'RALLY_SELENIUM_TIMEOUT': '1',
+        'RALLY_DESIRED_CAPABILITIES': 'name:Rally Arcade IE Automated Test Suite,platform:Windows 10,browserName:internet explorer,version:latest ,javascriptEnabled:True,nativeEvents:false,ignoreZoomSetting: true',
+        'RALLY_SELENIUM_TIMEOUT': '3',
         'RALLY_SELENIUM_SPEED': '.4'
             },
         'IPHONE': {
