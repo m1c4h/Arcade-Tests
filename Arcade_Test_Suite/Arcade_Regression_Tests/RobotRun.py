@@ -88,7 +88,7 @@ elif(args.BROWSER == 'ALL'):
                 currentDir= os.getcwd()
                 dir = os.path.dirname(__file__)
                 setIncludedTags = '--include ' + ' --include '.join(args.RUN)
-                p1 = subprocess.Popen('pabot ' + setVariableArgs + ' ' + setIncludedTags +' Tests/')
+                p1 = subprocess.Popen('pabot ' + setVariableArgs + ' ' + setIncludedTags +' Tests/',shell=True)
                 print 'pabot ' + setVariableArgs + ' ' + setIncludedTags + ' Tests'
                 p1.wait()
                 print br
