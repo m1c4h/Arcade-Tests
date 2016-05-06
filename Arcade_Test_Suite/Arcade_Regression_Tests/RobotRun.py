@@ -64,8 +64,8 @@ if (args.BROWSER != 'ALL'):
     setVariableArgs = ' --processes ' + str(args.PROCESSES) + \
                       ' --variable RALLY_TEST_ENV:' + args.ENV + \
                       ' --variable ON_DEMAND:' + args.SAUCE + \
-                      ' --variable RALLY_SELENIUM_BROWSER:'+ args.BROWSER+ \
-                      ' --name ' + args.BROWSER
+                      ' --variable RALLY_SELENIUM_BROWSER:'+ args.BROWSER
+
 
 
     if (len(args.RUN) > 0):
