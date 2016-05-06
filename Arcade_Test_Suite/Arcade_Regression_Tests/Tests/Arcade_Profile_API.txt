@@ -23,7 +23,7 @@ Arcade Profile API
     [Tags]  Arcade_Profile
     Build Session
     ${resp}=	Get Request 	rallyroot   	/rest/profile/v1/:rallyId       headers=&{headers}
-    Should Be Equal As Strings	${resp.status_code}	200
+    should be equal as numbers	${resp.status_code}	200
     log    ${resp.json}
     log    ${resp.content}
 
