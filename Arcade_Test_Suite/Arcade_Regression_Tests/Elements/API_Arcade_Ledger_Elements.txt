@@ -1,0 +1,6 @@
+*** Settings ***
+Documentation     Varibales for arcade ledger api
+
+*** Variables ***
+@{Arcade_ledger_fields} =    "accountType":"HSA"    "accountPeriod"     "startDate"     "endDate"   "balance"
+

@@ -1,0 +1,35 @@
+*** Settings ***
+Documentation     These tests are aimed at testing a Arcade API's
+Test Setup
+Force Tags        API   ALL
+Resource          ../Keywords/ApiActions.txt
+Library           RequestsLibrary
+Suite Teardown   Delete All Sessions
+Library           Collections
+Library           String
+Library           OperatingSystem
+Library           HttpLibrary.HTTP
+Library           Selenium2Library
+Test Teardown      close browser
+Resource          ../Elements/API_Arcade_Ledger_Elements.txt
+
+
+
+*** Test Cases ***
+Arcade Profile API
+    [Documentation]    Test for Arcade Profile API
+    [Tags]  Arcade_ledger
+    Build Session
+    ${resp}=	Get Request 	rallyroot   	rest/ledger/v1/balance/u/:rallyId      headers=&{headers}
+    should be equal as numbers	${resp.status_code}	200
+    log    ${resp.json}
+    log    ${resp.content}
+    :FOR    ${item}    in     @{Arcade_ledger_fields}
+    \       Should Contain    ${resp.content}     ${item}
+
+
+
+
+
+
+
