@@ -16,7 +16,7 @@ Resource          ../Elements/API_Arcade_Ledger_Elements.txt
 
 
 *** Test Cases ***
-Arcade Profile API
+Arcade Ledger API
     [Documentation]    Test for Arcade Profile API
     [Tags]  Arcade_ledger
     Build Session
