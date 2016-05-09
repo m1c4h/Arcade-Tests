@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation     These tests are aimed Optum Mocked API which maps to Arcade_Ledger_API
+Documentation     These tests are aimed Optum Mocked API which maps to Arcade_profile_API
 Test Setup
 #Force Tags        API   ALL
 Resource          ../Keywords/ApiActions.txt
@@ -11,20 +11,20 @@ Library           OperatingSystem
 Library           HttpLibrary.HTTP
 Library           Selenium2Library
 Test Teardown      close browser
-Resource          ../Elements/Optum_financialaccounts_Elements.txt
+Resource          ../Elements/Optum_profile_Elements.txt
 
 
 
 *** Test Cases ***
 Optum_financialaccounts_API
     [Documentation]    Test for Optum_financialaccounts_API
-    [Tags]      OFinancial
+    [Tags]      OProfile
     Build Session          https://doppelganger-dev-arcade.werally.in
-    ${resp}=	Get Request 	rallyroot   	optum/benefits/financialaccounts/v3.4/accountbalance.json     headers=&{headers}
+    ${resp}=	Get Request 	rallyroot   	optum/benefits/member/v3.6/profile.json    headers=&{headers}
     should be equal as numbers	${resp.status_code}	200
     log    ${resp.json}
     log    ${resp.content}
-    :FOR    ${item}    in     @{Optum_financialaccounts_fields}
+    :FOR    ${item}    in     @{Optum_profile_fields}
     \       Should Contain    ${resp.content}     ${item}
 
 

@@ -1,0 +1,6 @@
+*** Settings ***
+Documentation     Varibales for optum profile API
+
+*** Variables ***
+@{Optum_profile_fields} =    "firstName"    "lastName"  "relationshipTypeCode"   "coverageEffDateRange"     "startDate"     "endDate"    "accountID"    "id"    "policyNumber"
+

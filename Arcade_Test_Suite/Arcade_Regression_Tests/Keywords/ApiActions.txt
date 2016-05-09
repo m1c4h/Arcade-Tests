@@ -22,7 +22,9 @@ ${Str2}     ']
 
 *** Keywords ***
 Build Session
-    Create Session	    rallyroot   	https://dev-arcade.werally.in
+    [Arguments]     ${rootUrl}=https://dev-arcade.werally.in
+
+    Create Session	    rallyroot   	${rootUrl}
 
     set test variable    &{headers}    Content-Type=application/json    Accept=Language=en-US    Pragma=no-cache    Accept=application/json    Cache-Control=no-cache    Accept-Encoding=gzip,deflate    User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:42) Gecko/20100101 Firefox/42.0
 
